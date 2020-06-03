@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.App {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+}
+
+.cc-form {
+  position: relative;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  width: 100%;
+  border: 1px solid lightblue;
+  border-radius: 10px;
+  padding-top: 100px;
+}
+
+.cc-form__label {
+  border: 1px solid;
+}
+
+.container {
+  max-width: 570px;
+}
+
+.dropdown-menu {
+  min-width: 0;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.btn-wide {
+  width: 100%;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.row {
+  margin: 0;
+}
+
+.credit-card {
+  width: 100%;
+  top: 5%;
+  z-index: 1;
+  color: white;
+}
+
+.credit-card .card-img {
+  max-width: 430px;
+  height: 270px;
+  background-image: url("../images/24.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+}
+
+.credit-card .card-imgchildren {
+  min-height: 30px;
+}
+
+.credit-card .card-img-chip {
+  width: 60px;
+  margin-top: 20%;
+  border-radius: 10px;
+  border: 1px solid;
+}
+
+.credit-card .card-img-logo {
+  z-index: 2;
+}
+/*# sourceMappingURL=index.css.map */
