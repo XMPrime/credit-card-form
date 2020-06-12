@@ -21,6 +21,7 @@ export default function CreditCardForm(props) {
   // const [cardCVV, setCardCVV] = useState("");
   const {
     cardNum,
+    cardNumArr,
     cardName,
     cardCVV,
     cardExpMonth,
@@ -77,6 +78,7 @@ export default function CreditCardForm(props) {
     <Container className='cc-form pb-4 px-4'>
       <CreditCard
         cardNum={cardNum}
+        cardNumArr={cardNumArr}
         cardName={cardName}
         cardCVV={cardCVV}
         cardExpMonth={cardExpMonth}
@@ -85,14 +87,14 @@ export default function CreditCardForm(props) {
       <Form onSubmit={handleSubmit}>
         <Row>
           <FormGroup>
-            <Label for='card-num' sm={12}>
+            <Label for='card-form-num' sm={12}>
               Card Number
             </Label>
             <Col>
               <Input
                 type='text'
-                name='card-num'
-                id='card-num'
+                name='card-form-num'
+                id='card-form-num'
                 value={transformCardNum(cardNum)}
                 onChange={validateUserInput}
               />
@@ -101,14 +103,14 @@ export default function CreditCardForm(props) {
         </Row>
         <Row>
           <FormGroup>
-            <Label for='card-name' sm={12}>
+            <Label for='card-form-name' sm={12}>
               Card Holder's Name
             </Label>
             <Col sm={12}>
               <Input
                 type='text'
-                name='card-name'
-                id='card-name'
+                name='card-form-name'
+                id='card-form-name'
                 value={cardName}
                 onChange={validateUserInput}
               />
@@ -120,7 +122,7 @@ export default function CreditCardForm(props) {
           <Col sm={8}>
             <FormGroup>
               <Row>
-                <Label for='card-exp' sm={6}>
+                <Label for='card-form-exp' sm={6}>
                   Expiration Date
                 </Label>
               </Row>
@@ -129,14 +131,14 @@ export default function CreditCardForm(props) {
           </Col>
           <Col sm={4} className='pr-0'>
             <FormGroup sm={6}>
-              <Label for='card-cvv' sm={3}>
+              <Label for='card-form-cvv' sm={3}>
                 CVV
               </Label>
               <Col sm={12}>
                 <Input
-                  type='card-cvv'
-                  name='card-cvv'
-                  id='card-cvv'
+                  type='card-form-cvv'
+                  name='card-form-cvv'
+                  id='card-form-cvv'
                   value={cardCVV}
                   onChange={validateUserInput}
                 />
@@ -158,10 +160,10 @@ export default function CreditCardForm(props) {
 
     // <div className='container'>
     //   <form className='cc-form'>
-    //     <label for='card-number'>Card Number</label>
-    //     <input className='cc-input form-control' type='text' id='card-number' />
-    //     <label for='card-holder'>Card Holder's Name</label>
-    //     <input className='cc-input form-control' type='text' id='card-holder' />
+    //     <label for='card-form-number'>Card Number</label>
+    //     <input className='cc-input form-control' type='text' id='card-form-number' />
+    //     <label for='card-form-holder'>Card Holder's Name</label>
+    //     <input className='cc-input form-control' type='text' id='card-form-holder' />
     //     <div className='row'>
     //       <label for='exp-date'>Expiration Date</label>
     //       <div className='dropdown'>
@@ -182,10 +184,10 @@ export default function CreditCardForm(props) {
     // </div>
     //     <Container>
     //     <form className='cc-form'>
-    //       <label for='card-number'>Card Number</label>
-    //       <input className='cc-input form-control' type='text' id='card-number' />
-    //       <label for='card-holder'>Card Holder's Name</label>
-    //       <input className='cc-input form-control' type='text' id='card-holder' />
+    //       <label for='card-form-number'>Card Number</label>
+    //       <input className='cc-input form-control' type='text' id='card-form-number' />
+    //       <label for='card-form-holder'>Card Holder's Name</label>
+    //       <input className='cc-input form-control' type='text' id='card-form-holder' />
 
     //       <Row>
     //         <Col>
@@ -210,11 +212,11 @@ export default function CreditCardForm(props) {
     //       </Row>
     //     </form>
     //     <Form>
-    //       <Form.Group controlId='card-number'>
+    //       <Form.Group controlId='card-form-number'>
     //         <Form.Label>Card Number</Form.Label>
     //         <Form.Control type='text'></Form.Control>
     //       </Form.Group>
-    //       <Form.Group controlId='card-holder'>
+    //       <Form.Group controlId='card-form-holder'>
     //         <Form.Label>Card Holder's Name</Form.Label>
     //         <Form.Control type='text'></Form.Control>
     //       </Form.Group>
@@ -231,7 +233,7 @@ export default function CreditCardForm(props) {
     //             <Dropdown.Item href='#/action-2'>Another action</Dropdown.Item>
     //             <Dropdown.Item href='#/action-3'>Something else</Dropdown.Item>
     //           </DropdownButton>
-    //           <Form.Group controlId='card-holder'>
+    //           <Form.Group controlId='card-form-holder'>
     //             <Form.Label>Card Holder's Name</Form.Label>
     //             <Form.Control type='text'></Form.Control>
     //           </Form.Group>

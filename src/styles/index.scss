@@ -58,16 +58,33 @@ code {
   width: 100%;
 }
 
-.row {
-  margin: 0;
-}
-
 .credit-card {
   //   position: absolute;
   width: 100%;
   top: 5%;
   z-index: 1;
   color: white;
+  font-size: 1.2rem;
+  // font-weight: bold;
+  line-height: normal;
+
+  .char {
+    min-width: 1rem;
+  }
+  .char-enter {
+    opacity: 0;
+  }
+  .char-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms ease-in;
+  }
+  .char-exit {
+    opacity: 1;
+  }
+  .char-exit-active {
+    opacity: 0;
+    transition: opacity 1000ms ease-in;
+  }
 
   .card-img {
     max-width: 430px;
@@ -77,19 +94,32 @@ code {
     background-repeat: no-repeat;
     border-radius: 15px;
 
-    &children {
-      min-height: 30px;
+    .card-img-chip {
+      width: 60px;
+      height: 48px;
+      border-radius: 15px;
+      object-fit: cover;
+      margin-left: 50px;
     }
-  }
 
-  .card-img-chip {
-    width: 60px;
-    margin-top: 20%;
-    border-radius: 10px;
-    border: 1px solid;
-  }
+    .card-img-num {
+      // margin-left: 25px;
+      display: flex;
+      flex-direction: row;
+      font-size: 1.5rem;
+      letter-spacing: 0.1rem;
+    }
 
-  .card-img-logo {
-    z-index: 2;
+    .card-img-logo {
+      z-index: 2;
+      height: 45px;
+      max-width: 100px;
+      margin: 15px 12px;
+    }
+
+    .card-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+    }
   }
 }
