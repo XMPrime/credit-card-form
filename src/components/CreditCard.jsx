@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import cardImg from "../images/24.jpeg";
 import chip from "../images/cc-chip.png";
 import useContext from "../useContext";
 import logo from "../images/visa.png";
 import Character from "./Character";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import {
+  CSSTransition,
+  TransitionGroup,
+  SwitchTransition,
+} from "react-transition-group";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CreditCard(props) {
   const { transformCardNum } = useContext();
   const {
     cardNum,
-    cardNumArr,
     cardName,
     cardCVV,
     cardExpMonth,
     cardExpYear,
+    cardFront,
   } = props;
 
   // console.log(cardNumArr);
@@ -33,17 +38,61 @@ export default function CreditCard(props) {
 
   // const cardNumArr = cardNumDisplay(transformCardNum(cardNum)).split("");
 
-  const animatedChars = cardNumArr.map((char) => {
+  const charVariants = {
+    initial: {
+      opacity: 0,
+      y: "-30px",
+    },
+    animate: {
+      opacity: 1,
+      y: "0px",
+      transition: { duration: 0.25 },
+    },
+    exit: {
+      opacity: 0,
+      // transition: { ease: "easeInOut" },
+    },
+  };
+
+  function addHashes(str) {
+    const parts = str.split(" ");
+    const lastPart = parts[parts.length - 1];
+    // let hashes = [];
+    // const maxLength = 19; // 16 numbers + 3 spaces
+
+    for (let i = lastPart.length; i < 4; i++) {
+      parts[parts.length - 1] += "#";
+    }
+
+    for (let i = parts.length; i < 4; i++) {
+      parts.push("####");
+    }
+    return parts.join(" ").split("");
+  }
+
+  const cardNumDisplay = addHashes(cardNum);
+  console.log(cardNumDisplay);
+
+  const animatedChars = cardNumDisplay.map((char) => {
     return (
-      <CSSTransition timeout={500} classNames='char'>
-        <div className='char'>{char}</div>
-      </CSSTransition>
+      <AnimatePresence exitBeforeEnter>
+        <motion.div
+          className='char'
+          key={char}
+          variants={charVariants}
+          initial='initial'
+          animate='animate'
+          exit='exit'
+        >
+          {char}
+        </motion.div>
+      </AnimatePresence>
     );
   });
 
   return (
     <div className='credit-card'>
-      <Container className='card-img'>
+      <Container className={`card-img ${cardFront ? "front" : "back"}`}>
         <Row className='mb-3 justify-content-end'>
           <img className='card-img-logo ' src={logo} alt='card logo' />
         </Row>
@@ -52,15 +101,12 @@ export default function CreditCard(props) {
         </Row>
         <Row className='mb-3'>
           <div className='card-img-num ml-4'>
-            <TransitionGroup className='d-flex flex-row'>
-              {cardNumArr.map((char) => {
-                return (
-                  <CSSTransition timeout={500} classNames='char'>
-                    <div className='char'>{char}</div>
-                  </CSSTransition>
-                );
-              })}
-            </TransitionGroup>
+            <div className='d-flex flex-row'>
+              {/* {cardNumArr.map((char) => {
+                return <motion.div className='char'>{char}</motion.div>;
+              })} */}
+              {animatedChars}
+            </div>
           </div>
         </Row>
         <Row className='justify-content-between'>

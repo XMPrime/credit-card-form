@@ -26,6 +26,8 @@ export default function CreditCardForm(props) {
     cardCVV,
     cardExpMonth,
     cardExpYear,
+    cardFront,
+    flipCard,
     setCardExpMonth,
     setCardExpYear,
     getExpYears,
@@ -83,6 +85,7 @@ export default function CreditCardForm(props) {
         cardCVV={cardCVV}
         cardExpMonth={cardExpMonth}
         cardExpYear={cardExpYear}
+        cardFront={cardFront}
       />
       <Form onSubmit={handleSubmit}>
         <Row>
@@ -141,6 +144,7 @@ export default function CreditCardForm(props) {
                   id='card-form-cvv'
                   value={cardCVV}
                   onChange={validateUserInput}
+                  onFocus={flipCard}
                 />
               </Col>
             </FormGroup>

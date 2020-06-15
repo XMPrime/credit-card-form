@@ -6,7 +6,14 @@ export default function useContext() {
   const [cardCVV, setCardCVV] = useState("####");
   const [cardExpMonth, setCardExpMonth] = useState("MM");
   const [cardExpYear, setCardExpYear] = useState("YY");
-  const [cardNumArr, setCardNumArr] = useState("#### #### #### ####".split(""));
+  const [cardNumDisplay, setCardNumDisplay] = useState(
+    "#### #### #### ####".split("")
+  );
+  const [cardFront, setCardFront] = useState(true);
+
+  function flipCard() {
+    setCardFront(!cardFront);
+  }
 
   function getExpYears(startingYear) {
     let years = [];
@@ -17,13 +24,14 @@ export default function useContext() {
   }
 
   function transformCardNum(cardNum) {
+    console.log(cardNum);
     const v = cardNum.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
     const matches = v.match(/\d{4,16}/g);
     const match = (matches && matches[0]) || "";
     let parts = [];
-    let len = match.length;
+    let length = match.length;
 
-    for (let i = 0; i < len; i += 4) {
+    for (let i = 0; i < length; i += 4) {
       parts.push(match.substring(i, i + 4));
     }
     if (parts.length) {
@@ -32,14 +40,14 @@ export default function useContext() {
     return cardNum;
   }
 
-  function cardNumDisplay(str) {
-    const display = "#### #### #### ####";
-    const length = str.length;
-    if (str !== "") {
-      return str + display.slice(length);
-    }
-    return display;
-  }
+  // function cardNumDisplay(str) {
+  //   const display = "#### #### #### ####";
+  //   const length = str.length;
+  //   if (str !== "") {
+  //     return str + display.slice(length);
+  //   }
+  //   return display;
+  // }
 
   function validateUserInput(e) {
     const name = e.target.name;
@@ -47,27 +55,23 @@ export default function useContext() {
     const lastChar = userInput[userInput.length - 1];
 
     let regex;
-    let maxLength;
 
     switch (name) {
       case "card-form-num":
         regex = /[0-9 ]/;
-        maxLength = 16 + 3; // 3 spaces for CC format
-        setCardNum(e.target.value);
-        setCardNumArr(cardNumDisplay(transformCardNum(userInput)).split(""));
-        // console.log(cardNumArr);
+        if (regex.test(lastChar) || lastChar === undefined) {
+          setCardNum(transformCardNum(userInput));
+        }
         break;
       case "card-form-name":
         regex = /[a-zA-Z ]/;
-        maxLength = 22;
-        if (regex.test(lastChar) && userInput.length <= maxLength) {
+        if (regex.test(lastChar) || lastChar === undefined) {
           setCardName(e.target.value.toUpperCase());
         }
         break;
       case "card-form-cvv":
         regex = /[0-9]/;
-        maxLength = 4;
-        if (regex.test(lastChar) && userInput.length <= maxLength) {
+        if (regex.test(lastChar) || lastChar === undefined) {
           setCardCVV(e.target.value);
         }
         break;
@@ -83,11 +87,13 @@ export default function useContext() {
 
   return {
     cardNum,
-    cardNumArr,
+    cardNumDisplay,
     cardName,
     cardCVV,
     cardExpMonth,
     cardExpYear,
+    cardFront,
+    flipCard,
     setCardNum,
     setCardName,
     setCardCVV,

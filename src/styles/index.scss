@@ -70,21 +70,37 @@ code {
 
   .char {
     min-width: 1rem;
+    // animation-name: drop-in;
   }
-  .char-enter {
-    opacity: 0;
-  }
-  .char-enter-active {
-    opacity: 1;
-    transition: opacity 1000ms ease-in;
-  }
-  .char-exit {
-    opacity: 1;
-  }
-  .char-exit-active {
-    opacity: 0;
-    transition: opacity 1000ms ease-in;
-  }
+
+  // @keyframes drop-in {
+  //   0% {
+  //     top: 0;
+  //   }
+  //   50% {
+  //     top: 10px;
+  //   }
+  //   100% {
+  //     top: 20px;
+  //   }
+  // }
+
+  // .char-enter {
+  //   opacity: 0;
+  //   transform: translateY(-100px);
+  // }
+  // .char-enter-active {
+  //   opacity: 1;
+  //   transform: translateY(0px);
+  //   transition: opacity transform 1000ms;
+  // }
+  // .char-exit {
+  //   opacity: 1;
+  // }
+  // .char-exit-active {
+  //   opacity: 0.01;
+  //   transition: opacity 1000ms ease-in;
+  // }
 
   .card-img {
     max-width: 430px;

@@ -79,26 +79,6 @@ code {
   min-width: 1rem;
 }
 
-.credit-card .char-enter {
-  opacity: 0;
-}
-
-.credit-card .char-enter-active {
-  opacity: 1;
-  -webkit-transition: opacity 1000ms ease-in;
-  transition: opacity 1000ms ease-in;
-}
-
-.credit-card .char-exit {
-  opacity: 1;
-}
-
-.credit-card .char-exit-active {
-  opacity: 0;
-  -webkit-transition: opacity 1000ms ease-in;
-  transition: opacity 1000ms ease-in;
-}
-
 .credit-card .card-img {
   max-width: 430px;
   height: 270px;
