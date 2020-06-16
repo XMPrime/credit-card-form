@@ -6,35 +6,57 @@ import {
   Form,
   FormGroup,
   Label,
-  Input,
   Button,
 } from "reactstrap";
 import CreditCard from "./CreditCard";
 import ExpSelect from "./ExpSelect";
-import useContext from "../useContext";
-
-import chip from "../images/cc-chip.png";
+// import { Context } from "../Context";
+import { getExpYears, transformCardNum } from "../utils";
+import TextInput from "./TextInput";
 
 export default function CreditCardForm(props) {
-  // const [cardNum, setCardNum] = useState("");
-  // const [cardName, setCardName] = useState("");
-  // const [cardCVV, setCardCVV] = useState("");
-  const {
-    cardNum,
-    cardNumArr,
-    cardName,
-    cardCVV,
-    cardExpMonth,
-    cardExpYear,
-    cardFront,
-    flipCard,
-    setCardExpMonth,
-    setCardExpYear,
-    getExpYears,
-    transformCardNum,
-    validateUserInput,
-    handleSubmit,
-  } = useContext();
+  const [cardNum, setCardNum] = useState("");
+  const [cardName, setCardName] = useState("");
+  const [cardCVV, setCardCVV] = useState("");
+  const [cardExpMonth, setCardExpMonth] = useState("MM");
+  const [cardExpYear, setCardExpYear] = useState("YY");
+  const [cardFront, setCardFront] = useState(true);
+
+  function validateUserInput(e) {
+    const name = e.target.name;
+    const userInput = e.target.value;
+    const lastChar = userInput[userInput.length - 1];
+
+    let regex;
+
+    switch (name) {
+      case "card-form-num":
+        regex = /[0-9 ]/;
+        if (regex.test(lastChar) || lastChar === undefined) {
+          setCardNum(transformCardNum(userInput));
+        }
+        break;
+      case "card-form-name":
+        regex = /[a-zA-Z ]/;
+        if (regex.test(lastChar) || lastChar === undefined) {
+          setCardName(e.target.value.toUpperCase());
+        }
+        break;
+      case "card-form-cvv":
+        regex = /[0-9]/;
+        if (regex.test(lastChar) || lastChar === undefined) {
+          setCardCVV(e.target.value);
+        }
+        break;
+      default:
+        break;
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("submitted");
+  }
 
   const months = [
     "01",
@@ -49,38 +71,13 @@ export default function CreditCardForm(props) {
     "10",
     "11",
     "12",
-  ].map((month) => <option value={month}>{month}</option>);
-  const currentYear = new Date().getFullYear();
-  const years = getExpYears(currentYear).map((year) => (
-    <option value={year.toString().slice(2)}>{year}</option>
-  ));
-
-  const dropdowns = [
-    {
-      id: "mm",
-      labelText: "Month",
-      items: months,
-    },
-    {
-      id: "yy",
-      labelText: "Year",
-      items: years,
-    },
-  ].map((dropdown) => (
-    <ExpSelect
-      id={dropdown.id}
-      labelText={dropdown.labelText}
-      items={dropdown.items}
-      setCardExpMonth={setCardExpMonth}
-      setCardExpYear={setCardExpYear}
-    />
-  ));
+  ];
+  const years = getExpYears(new Date().getFullYear());
 
   return (
     <Container className='cc-form pb-4 px-4'>
       <CreditCard
         cardNum={cardNum}
-        cardNumArr={cardNumArr}
         cardName={cardName}
         cardCVV={cardCVV}
         cardExpMonth={cardExpMonth}
@@ -89,38 +86,25 @@ export default function CreditCardForm(props) {
       />
       <Form onSubmit={handleSubmit}>
         <Row>
-          <FormGroup>
-            <Label for='card-form-num' sm={12}>
-              Card Number
-            </Label>
-            <Col>
-              <Input
-                type='text'
-                name='card-form-num'
-                id='card-form-num'
-                value={transformCardNum(cardNum)}
-                onChange={validateUserInput}
-              />
-            </Col>
-          </FormGroup>
+          <TextInput
+            size={12}
+            label='Card Number'
+            name='card-form-num'
+            value={transformCardNum(cardNum)}
+            onChange={validateUserInput}
+            maxLength='19'
+          />
         </Row>
         <Row>
-          <FormGroup>
-            <Label for='card-form-name' sm={12}>
-              Card Holder's Name
-            </Label>
-            <Col sm={12}>
-              <Input
-                type='text'
-                name='card-form-name'
-                id='card-form-name'
-                value={cardName}
-                onChange={validateUserInput}
-              />
-            </Col>
-          </FormGroup>
+          <TextInput
+            size={12}
+            label='Card Holder'
+            name='card-form-name'
+            value={cardName}
+            onChange={validateUserInput}
+            maxLength='26'
+          />
         </Row>
-
         <Row>
           <Col sm={8}>
             <FormGroup>
@@ -129,25 +113,36 @@ export default function CreditCardForm(props) {
                   Expiration Date
                 </Label>
               </Row>
-              <Row>{dropdowns}</Row>
+              <Row>
+                <ExpSelect
+                  id='mm'
+                  defaultOption='Month'
+                  items={months.map((month) => (
+                    <option value={month}>{month}</option>
+                  ))}
+                  onChange={setCardExpMonth}
+                />
+                <ExpSelect
+                  id='yy'
+                  defaultOption='Year'
+                  items={years.map((year) => (
+                    <option value={year.toString().slice(2)}>{year}</option>
+                  ))}
+                  onChange={setCardExpYear}
+                />
+              </Row>
             </FormGroup>
           </Col>
           <Col sm={4} className='pr-0'>
-            <FormGroup sm={6}>
-              <Label for='card-form-cvv' sm={3}>
-                CVV
-              </Label>
-              <Col sm={12}>
-                <Input
-                  type='card-form-cvv'
-                  name='card-form-cvv'
-                  id='card-form-cvv'
-                  value={cardCVV}
-                  onChange={validateUserInput}
-                  onFocus={flipCard}
-                />
-              </Col>
-            </FormGroup>
+            <TextInput
+              size={6}
+              label='CVV'
+              name='card-form-cvv'
+              value={cardCVV}
+              onChange={validateUserInput}
+              onFocus={() => setCardFront(!cardFront)}
+              maxlength='4'
+            />
           </Col>
         </Row>
         <Button
@@ -161,89 +156,5 @@ export default function CreditCardForm(props) {
         </Button>
       </Form>
     </Container>
-
-    // <div className='container'>
-    //   <form className='cc-form'>
-    //     <label for='card-form-number'>Card Number</label>
-    //     <input className='cc-input form-control' type='text' id='card-form-number' />
-    //     <label for='card-form-holder'>Card Holder's Name</label>
-    //     <input className='cc-input form-control' type='text' id='card-form-holder' />
-    //     <div className='row'>
-    //       <label for='exp-date'>Expiration Date</label>
-    //       <div className='dropdown'>
-    //         <button
-    //           class='btn btn-secondary dropdown-toggle'
-    //           type='button'
-    //           id='dropdownMenuButton'
-    //           data-toggle='dropdown'
-    //           aria-haspopup='true'
-    //           aria-expanded='false'
-    //         >
-    //           Dropdown button
-    //         </button>
-    //       </div>
-    //       <input className='cc-input form-control' type='text' id='exp-date' />
-    //     </div>
-    //   </form>
-    // </div>
-    //     <Container>
-    //     <form className='cc-form'>
-    //       <label for='card-form-number'>Card Number</label>
-    //       <input className='cc-input form-control' type='text' id='card-form-number' />
-    //       <label for='card-form-holder'>Card Holder's Name</label>
-    //       <input className='cc-input form-control' type='text' id='card-form-holder' />
-
-    //       <Row>
-    //         <Col>
-    //           <label for='exp-date'>Expiration Date</label>
-    //           <Row>
-    //             <DropdownButton id='exp-date' title='Dropdown button'>
-    //               <Dropdown.Item href='#/action-1'>Action</Dropdown.Item>
-    //               <Dropdown.Item href='#/action-2'>Another action</Dropdown.Item>
-    //               <Dropdown.Item href='#/action-3'>Something else</Dropdown.Item>
-    //             </DropdownButton>
-    //             <DropdownButton id='exp-date' title='Dropdown button'>
-    //               <Dropdown.Item href='#/action-1'>Action</Dropdown.Item>
-    //               <Dropdown.Item href='#/action-2'>Another action</Dropdown.Item>
-    //               <Dropdown.Item href='#/action-3'>Something else</Dropdown.Item>
-    //             </DropdownButton>
-    //           </Row>
-    //         </Col>
-    //         <Col>
-    //           <label for='cvv'>CVV</label>
-    //           <input className='cc-input form-control' type='text' id='cvv' />
-    //         </Col>
-    //       </Row>
-    //     </form>
-    //     <Form>
-    //       <Form.Group controlId='card-form-number'>
-    //         <Form.Label>Card Number</Form.Label>
-    //         <Form.Control type='text'></Form.Control>
-    //       </Form.Group>
-    //       <Form.Group controlId='card-form-holder'>
-    //         <Form.Label>Card Holder's Name</Form.Label>
-    //         <Form.Control type='text'></Form.Control>
-    //       </Form.Group>
-    //       <Form.Group as={Col} controlId='exp-date'>
-    //         <Form.Label>Expiration Date</Form.Label>
-    //         <Form.Row>
-    //           <DropdownButton id='exp-date' title='Dropdown button'>
-    //             <Dropdown.Item href='#/action-1'>Action</Dropdown.Item>
-    //             <Dropdown.Item href='#/action-2'>Another action</Dropdown.Item>
-    //             <Dropdown.Item href='#/action-3'>Something else</Dropdown.Item>
-    //           </DropdownButton>
-    //           <DropdownButton id='exp-date' title='Dropdown button'>
-    //             <Dropdown.Item href='#/action-1'>Action</Dropdown.Item>
-    //             <Dropdown.Item href='#/action-2'>Another action</Dropdown.Item>
-    //             <Dropdown.Item href='#/action-3'>Something else</Dropdown.Item>
-    //           </DropdownButton>
-    //           <Form.Group controlId='card-form-holder'>
-    //             <Form.Label>Card Holder's Name</Form.Label>
-    //             <Form.Control type='text'></Form.Control>
-    //           </Form.Group>
-    //         </Form.Row>
-    //       </Form.Group>
-    //     </Form>
-    //   </Container>
   );
 }

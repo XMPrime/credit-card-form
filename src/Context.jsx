@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
+const Context = React.createContext();
 
-export default function useContext() {
+function ContextProvider(props) {
   const [cardNum, setCardNum] = useState("");
   const [cardName, setCardName] = useState("");
   const [cardCVV, setCardCVV] = useState("");
@@ -24,6 +25,7 @@ export default function useContext() {
   }
 
   function transformCardNum(cardNum) {
+    console.log(cardNum);
     const v = cardNum.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
     const matches = v.match(/\d{4,16}/g);
     const match = (matches && matches[0]) || "";
@@ -75,23 +77,33 @@ export default function useContext() {
     console.log("submitted");
   }
 
-  return {
-    cardNum,
-    cardNumDisplay,
-    cardName,
-    cardCVV,
-    cardExpMonth,
-    cardExpYear,
-    cardFront,
-    flipCard,
-    setCardNum,
-    setCardName,
-    setCardCVV,
-    setCardExpMonth,
-    setCardExpYear,
-    getExpYears,
-    transformCardNum,
-    validateUserInput,
-    handleSubmit,
-  };
+  return (
+    <Context.Provider
+      value={{
+        cardNum,
+        cardName,
+        cardCVV,
+        cardExpMonth,
+        cardExpYear,
+        cardNumDisplay,
+        cardFront,
+        setCardNum,
+        setCardName,
+        setCardCVV,
+        setCardExpMonth,
+        setCardExpYear,
+        setCardNumDisplay,
+        setCardFront,
+        flipCard,
+        getExpYears,
+        transformCardNum,
+        validateUserInput,
+        handleSubmit,
+      }}
+    >
+      {props.children}
+    </Context.Provider>
+  );
 }
+
+export { ContextProvider, Context };

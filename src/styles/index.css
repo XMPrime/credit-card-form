@@ -73,13 +73,6 @@ code {
   color: white;
   font-size: 1.2rem;
   line-height: normal;
-}
-
-.credit-card .char {
-  min-width: 1rem;
-}
-
-.credit-card .card-img {
   max-width: 430px;
   height: 270px;
   background-image: url("../images/24.jpeg");
@@ -88,7 +81,11 @@ code {
   border-radius: 15px;
 }
 
-.credit-card .card-img .card-img-chip {
+.credit-card .char {
+  min-width: 1rem;
+}
+
+.credit-card__chip {
   width: 60px;
   height: 48px;
   border-radius: 15px;
@@ -97,7 +94,7 @@ code {
   margin-left: 50px;
 }
 
-.credit-card .card-img .card-img-num {
+.credit-card__num, .credit-card__name, .credit-card__exp, .credit-card__cvv {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -105,19 +102,34 @@ code {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+
+.credit-card__num {
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
 }
 
-.credit-card .card-img .card-img-logo {
+.credit-card__num .char {
+  min-width: 1rem;
+}
+
+.credit-card__name .char, .credit-card__exp .char, .credit-card__cvv .char {
+  min-width: 0.5rem;
+}
+
+.credit-card__logo {
   z-index: 2;
   height: 45px;
   max-width: 100px;
   margin: 15px 12px;
 }
 
-.credit-card .card-img .card-label {
+.credit-card__label {
   font-size: 0.6rem;
   text-transform: uppercase;
+}
+
+.credit-card__signature {
+  font-family: "Cedarville Cursive", cursive;
 }
 /*# sourceMappingURL=index.css.map */
