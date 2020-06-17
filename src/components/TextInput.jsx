@@ -20,9 +20,11 @@ export default function TextInput({
           type='text'
           name={name}
           id={name}
+          className={name}
           value={value}
           onChange={onChange}
           onFocus={onFocus}
+          onBlur={onFocus}
           maxLength={maxLength}
         />
       </Col>

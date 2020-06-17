@@ -9,7 +9,7 @@ export default function useContext() {
   const [cardNumDisplay, setCardNumDisplay] = useState(
     "#### #### #### ####".split("")
   );
-  const [cardFront, setCardFront] = useState(true);
+  const [cardFront, setCardFront] = useState(null);
 
   function flipCard() {
     setCardFront(!cardFront);

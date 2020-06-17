@@ -48,12 +48,12 @@ export default function CreditCardFront({
 
   const cardNumDisplay = addHashes(cardNum);
   return (
-    <Container className={`credit-card ${cardFront ? "front" : "back"}`}>
+    <div className='front px-0' key={1}>
       <Row className='mb-3 justify-content-end'>
         <img className='credit-card__logo ' src={logo} alt='card logo' />
       </Row>
       <Row className='mb-3'>
-        <img className='credit-card__chip ' src={chip} alt='chip' />
+        <img className='credit-card__chip ml-5' src={chip} alt='chip' />
       </Row>
       <Row className='mb-3'>
         <div className='credit-card__num ml-4'>
@@ -62,26 +62,30 @@ export default function CreditCardFront({
           ))}
         </div>
       </Row>
-      <Row className='justify-content-between'>
-        <Col sm={8} className='px-0 ml-4'>
+      <Row className='justify-content-between mx-4'>
+        <Col sm={8} className='px-0 '>
           <div className='credit-card__label'>CARD HOLDER</div>
           <div className='credit-card__name'>
             {cardName === "" ? (
               <AnimatedChar char='YOUR FULL NAME' />
             ) : (
-              cardName.split("").map((char) => <AnimatedChar char={char} />)
+              cardName
+                .split("")
+                .map((char) => <AnimatedChar char={char.toUpperCase()} />)
             )}
           </div>
         </Col>
 
-        <Col sm={2} className='px-0 mr-4'>
+        <Col sm={1.5} className='px-0'>
+          {/* <div className='credit-card__exp d-flex flex-col'> */}
           <div className='credit-card__label'>VALID THRU</div>
           {/* <div className='credit-card__exp'>{`${cardExpMonth}/${cardExpYear}`}</div> */}
-          <div className='credit-card__exp'>
+          <div className='credit-card__dates'>
             <AnimatedChar char={cardExpMonth} />
             <span>/</span>
             <AnimatedChar char={cardExpYear} />
           </div>
+          {/* </div> */}
         </Col>
       </Row>
       <Row>
@@ -91,6 +95,6 @@ export default function CreditCardFront({
           ))}
         </div>
       </Row>
-    </Container>
+    </div>
   );
 }

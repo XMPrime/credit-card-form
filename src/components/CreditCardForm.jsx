@@ -39,7 +39,7 @@ export default function CreditCardForm(props) {
       case "card-form-name":
         regex = /[a-zA-Z ]/;
         if (regex.test(lastChar) || lastChar === undefined) {
-          setCardName(e.target.value.toUpperCase());
+          setCardName(e.target.value);
         }
         break;
       case "card-form-cvv":
@@ -141,7 +141,7 @@ export default function CreditCardForm(props) {
               value={cardCVV}
               onChange={validateUserInput}
               onFocus={() => setCardFront(!cardFront)}
-              maxlength='4'
+              maxLength='4'
             />
           </Col>
         </Row>

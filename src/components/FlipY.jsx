@@ -4,13 +4,16 @@ import { motion, AnimatePresence } from "framer-motion";
 const flipVariants = {
   initial: {
     rotateY: 0,
+    // perspective: 0,
   },
   animate: {
     rotateY: 0,
+    transition: { duration: 0.125 },
   },
   exit: {
     rotateY: 180,
-    transition: { duration: 0.5 },
+    // perspective: "1000px",
+    transition: { duration: 0.25 },
   },
 };
 
@@ -18,7 +21,6 @@ export default function FlipY({ id, children }) {
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div
-        className='char'
         key={id}
         variants={flipVariants}
         initial='initial'

@@ -9,6 +9,7 @@ import AnimatedChar from "./AnimatedChar";
 import { v4 as uuidv4 } from "uuid";
 import FlipY from "./FlipY";
 import CreditCardFront from "./CreditCardFront";
+import CreditCardBack from "./CreditCardBack";
 
 export default function CreditCard({
   cardNum,
@@ -38,21 +39,37 @@ export default function CreditCard({
   // const cardNumDisplay = addHashes(cardNum);
 
   return (
-    <FlipY id={1}>
-      {cardFront ? (
+    <Container className='credit-card px-0'>
+      <div className='cover'>
         <CreditCardFront
           cardNum={cardNum}
           cardName={cardName}
           cardCVV={cardCVV}
           cardExpMonth={cardExpMonth}
           cardExpYear={cardExpYear}
-          cardFront={cardFront}
         />
-      ) : null}
-    </FlipY>
+        <CreditCardBack cardName={cardName} cardCVV={cardCVV} />
+      </div>
+    </Container>
   );
 }
 
 {
   /* <CreditCardFront /> */
+}
+{
+  /* <FlipY id={1}>
+{cardFront ? (
+  <CreditCardFront
+    cardNum={cardNum}
+    cardName={cardName}
+    cardCVV={cardCVV}
+    cardExpMonth={cardExpMonth}
+    cardExpYear={cardExpYear}
+    cardFront={cardFront}
+  />
+) : (
+  <CreditCardBack />
+)}
+</FlipY> */
 }
