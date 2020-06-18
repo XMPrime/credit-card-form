@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, FormGroup, Label, Input } from "reactstrap";
+import { FormGroup, Label, Input } from "reactstrap";
 
 export default function TextInput({
   size,

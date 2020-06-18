@@ -30,7 +30,6 @@ export default function CreditCardForm(props) {
     americanExpress: ["34", "37"],
     dinersClub: ["30", "36", "38"],
   };
-  console.log(cardLogo);
 
   function validateUserInput(e) {
     const name = e.target.name;
@@ -44,19 +43,20 @@ export default function CreditCardForm(props) {
         console.log(userInput[0], cardNum[0]);
         if (userInput[0] !== cardNum[0] || userInput[1] !== cardNum[1]) {
           if (userInput[0] === "4") setCardLogo("visa");
-          if (userInput[0] === "5") setCardLogo("master");
-          if (userInput[0] === "6") setCardLogo("discover");
-          if (
+          else if (userInput[0] === "5") setCardLogo("master");
+          else if (userInput[0] === "6") setCardLogo("discover");
+          else if (
             userInput[0] + userInput[1] === "34" ||
             userInput[0] + userInput[1] === "37"
           )
             setCardLogo("amex");
-          if (
+          else if (
             userInput[0] + userInput[1] === "30" ||
             userInput[0] + userInput[1] === "36" ||
             userInput[0] + userInput[1] === "38"
           )
             setCardLogo("diners");
+          else setCardLogo("visa");
         }
         if (regex.test(lastChar) || lastChar === undefined) {
           setCardNum(transformCardNum(userInput, cardLogo));
@@ -99,6 +99,7 @@ export default function CreditCardForm(props) {
     "12",
   ];
   const years = getExpYears(new Date().getFullYear());
+  console.log(cardLogo);
 
   return (
     <Container className='cc-form pb-4 px-4'>
@@ -116,9 +117,9 @@ export default function CreditCardForm(props) {
           size={12}
           label='Card Number'
           name='card-form-num'
-          value={transformCardNum(cardNum)}
+          value={transformCardNum(cardNum, cardLogo)}
           onChange={validateUserInput}
-          maxLength='19'
+          maxLength={cardLogo === "amex" ? "17" : "19"}
         />
         <TextInput
           size={12}
@@ -160,7 +161,7 @@ export default function CreditCardForm(props) {
               value={cardCVV}
               onChange={validateUserInput}
               onFocus={() => setCardFront(!cardFront)}
-              maxLength='4'
+              maxLength={cardLogo === "amex" ? "4" : "3"}
             />
           </Col>
         </Row>

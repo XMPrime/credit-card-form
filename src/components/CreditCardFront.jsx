@@ -1,16 +1,8 @@
 import React from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import AnimatedChar from "./AnimatedChar";
 import chip from "../images/cc-chip.png";
-// import logo from "../images/visa.png";
-// import visa from "../images/visa.png";
-// import mastercard from "../images/mastercard.png";
-// import discover from "../images/discover.png";
-// import amex from "../images/amex.png";
-// import diners from "../images/diners.png";
-// import useContext from "../useContext";
 import cardImg from "../images/24.jpeg";
-// import { Context } from "../Context";
 
 export default function CreditCardFront({
   cardNum,
@@ -21,39 +13,44 @@ export default function CreditCardFront({
   cardFront,
   cardLogo,
 }) {
-  // const {
-  //   cardNum,
-  //   cardName,
-  //   cardCVV,
-  //   cardExpMonth,
-  //   cardExpYear,
-  //   cardFront,
-  // } = useContext(Context);
-
-  // const {
-  //   cardNum,
-  //   cardName,
-  //   cardCVV,
-  //   cardExpMonth,
-  //   cardExpYear,
-  //   cardFront,
-  // } = useContext();
-
   function addHashes(str) {
     const parts = str.split(" ");
     const lastPart = parts[parts.length - 1];
 
-    for (let i = lastPart.length; i < 4; i++) {
-      parts[parts.length - 1] += "#";
+    if (cardLogo === "amex") {
+      switch (parts.length) {
+        case 1:
+          for (let i = lastPart.length; i < 4; i++) {
+            parts[0] += "#";
+          }
+          parts.push("######");
+          parts.push("#####");
+          break;
+        case 2:
+          for (let i = lastPart.length; i < 6; i++) {
+            parts[1] += "#";
+          }
+          parts.push("#####");
+          break;
+        default:
+          for (let i = lastPart.length; i < 5; i++) {
+            parts[2] += "#";
+          }
+          break;
+      }
+    } else {
+      for (let i = lastPart.length; i < 4; i++) {
+        parts[parts.length - 1] += "#";
+      }
+      for (let i = parts.length; i < 4; i++) {
+        parts.push("####");
+      }
     }
 
-    for (let i = parts.length; i < 4; i++) {
-      parts.push("####");
-    }
     return parts.join(" ").split("");
   }
 
-  const cardNumDisplay = addHashes(cardNum);
+  const cardNumDisplay = addHashes(cardNum, cardLogo);
   return (
     <div className='front px-0 d-flex flex-column' key={1}>
       <img className='credit-card__img' src={cardImg} alt='credit card bg' />
