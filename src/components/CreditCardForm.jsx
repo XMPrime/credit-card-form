@@ -10,7 +10,6 @@ import {
 } from "reactstrap";
 import CreditCard from "./CreditCard";
 import ExpSelect from "./ExpSelect";
-// import { Context } from "../Context";
 import { getExpYears, transformCardNum } from "../utils";
 import TextInput from "./TextInput";
 
@@ -22,14 +21,6 @@ export default function CreditCardForm(props) {
   const [cardExpYear, setCardExpYear] = useState("YY");
   const [cardFront, setCardFront] = useState(true);
   const [cardLogo, setCardLogo] = useState("visa");
-
-  const cardIdentifiers = {
-    visa: "4",
-    masterCard: "5",
-    discoverCard: "6",
-    americanExpress: ["34", "37"],
-    dinersClub: ["30", "36", "38"],
-  };
 
   function validateUserInput(e) {
     const name = e.target.name;
