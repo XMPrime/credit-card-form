@@ -21,19 +21,45 @@ export default function CreditCardForm(props) {
   const [cardExpMonth, setCardExpMonth] = useState("MM");
   const [cardExpYear, setCardExpYear] = useState("YY");
   const [cardFront, setCardFront] = useState(true);
+  const [cardLogo, setCardLogo] = useState("visa");
+
+  const cardIdentifiers = {
+    visa: "4",
+    masterCard: "5",
+    discoverCard: "6",
+    americanExpress: ["34", "37"],
+    dinersClub: ["30", "36", "38"],
+  };
+  console.log(cardLogo);
 
   function validateUserInput(e) {
     const name = e.target.name;
     const userInput = e.target.value;
     const lastChar = userInput[userInput.length - 1];
-
     let regex;
 
     switch (name) {
       case "card-form-num":
         regex = /[0-9 ]/;
+        console.log(userInput[0], cardNum[0]);
+        if (userInput[0] !== cardNum[0] || userInput[1] !== cardNum[1]) {
+          if (userInput[0] === "4") setCardLogo("visa");
+          if (userInput[0] === "5") setCardLogo("master");
+          if (userInput[0] === "6") setCardLogo("discover");
+          if (
+            userInput[0] + userInput[1] === "34" ||
+            userInput[0] + userInput[1] === "37"
+          )
+            setCardLogo("amex");
+          if (
+            userInput[0] + userInput[1] === "30" ||
+            userInput[0] + userInput[1] === "36" ||
+            userInput[0] + userInput[1] === "38"
+          )
+            setCardLogo("diners");
+        }
         if (regex.test(lastChar) || lastChar === undefined) {
-          setCardNum(transformCardNum(userInput));
+          setCardNum(transformCardNum(userInput, cardLogo));
         }
         break;
       case "card-form-name":
@@ -83,36 +109,29 @@ export default function CreditCardForm(props) {
         cardExpMonth={cardExpMonth}
         cardExpYear={cardExpYear}
         cardFront={cardFront}
+        cardLogo={cardLogo}
       />
-      <Form onSubmit={handleSubmit}>
-        <Row>
-          <TextInput
-            size={12}
-            label='Card Number'
-            name='card-form-num'
-            value={transformCardNum(cardNum)}
-            onChange={validateUserInput}
-            maxLength='19'
-          />
-        </Row>
-        <Row>
-          <TextInput
-            size={12}
-            label='Card Holder'
-            name='card-form-name'
-            value={cardName}
-            onChange={validateUserInput}
-            maxLength='26'
-          />
-        </Row>
+      <Form className='mx-2 mt-5' onSubmit={handleSubmit}>
+        <TextInput
+          size={12}
+          label='Card Number'
+          name='card-form-num'
+          value={transformCardNum(cardNum)}
+          onChange={validateUserInput}
+          maxLength='19'
+        />
+        <TextInput
+          size={12}
+          label='Card Holder'
+          name='card-form-name'
+          value={cardName}
+          onChange={validateUserInput}
+          maxLength='26'
+        />
         <Row>
           <Col sm={8}>
             <FormGroup>
-              <Row>
-                <Label for='card-form-exp' sm={6}>
-                  Expiration Date
-                </Label>
-              </Row>
+              <Label for='card-form-exp'>Expiration Date</Label>
               <Row>
                 <ExpSelect
                   id='mm'

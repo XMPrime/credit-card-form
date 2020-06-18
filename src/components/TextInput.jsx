@@ -12,22 +12,18 @@ export default function TextInput({
 }) {
   return (
     <FormGroup>
-      <Label for={name} sm={size}>
-        {label}
-      </Label>
-      <Col>
-        <Input
-          type='text'
-          name={name}
-          id={name}
-          className={name}
-          value={value}
-          onChange={onChange}
-          onFocus={onFocus}
-          onBlur={onFocus}
-          maxLength={maxLength}
-        />
-      </Col>
+      <Label for={name}>{label}</Label>
+      <Input
+        type='text'
+        name={name}
+        id={name}
+        className={name}
+        value={value}
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onFocus}
+        maxLength={maxLength}
+      />
     </FormGroup>
   );
 }
