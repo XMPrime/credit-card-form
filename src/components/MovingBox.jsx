@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { v4 as uuidv4 } from "uuid";
 
 export default function MovingBox({ boxStart, boxEnd }) {
@@ -26,11 +26,6 @@ export default function MovingBox({ boxStart, boxEnd }) {
   Object.assign(boxVariants.initial, boxStart);
   Object.assign(boxVariants.animate, boxEnd);
 
-  const boxCoordinates = {
-    cardNum: { height: "50px", width: "330px", top: "136px", left: "10px" },
-    cardName: { height: "60px", width: "270px", top: "180px", left: "10px" },
-    cardExp: { height: "60px", width: "5.5rem", top: "180px", left: "330px" },
-  };
   return (
     <motion.div
       className='moving-box'
