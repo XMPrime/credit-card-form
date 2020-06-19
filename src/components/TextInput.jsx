@@ -2,7 +2,6 @@ import React from "react";
 import { FormGroup, Label, Input } from "reactstrap";
 
 export default function TextInput({
-  size,
   label,
   name,
   value,

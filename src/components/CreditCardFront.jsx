@@ -7,10 +7,8 @@ import cardImg from "../images/24.jpeg";
 export default function CreditCardFront({
   cardNum,
   cardName,
-  cardCVV,
   cardExpMonth,
   cardExpYear,
-  cardFront,
   cardLogo,
 }) {
   function addHashes(str) {
@@ -81,9 +79,7 @@ export default function CreditCardFront({
         </Col>
 
         <Col sm={2} className='px-0'>
-          {/* <div className='credit-card__exp d-flex flex-col'> */}
           <div className='credit-card__label'>VALID THRU</div>
-          {/* <div className='credit-card__exp'>{`${cardExpMonth}/${cardExpYear}`}</div> */}
           <div className='credit-card__dates'>
             <AnimatedChar char={cardExpMonth} />
             <span>/</span>

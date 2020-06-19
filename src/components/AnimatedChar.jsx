@@ -13,7 +13,6 @@ const charVariants = {
   },
   exit: {
     opacity: 0,
-    // transition: { ease: "easeInOut" },
   },
 };
 

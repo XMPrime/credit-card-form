@@ -2,7 +2,7 @@ import React from "react";
 import AnimatedChar from "./AnimatedChar";
 import cardImg from "../images/24.jpeg";
 
-export default function CreditCardBack({ cardName, cardCVV, cardFront }) {
+export default function CreditCardBack({ cardName, cardCVV }) {
   return (
     <div className='back d-flex flex-column align-items-center' key={2}>
       <img className='credit-card__img' src={cardImg} alt='credit card bg' />

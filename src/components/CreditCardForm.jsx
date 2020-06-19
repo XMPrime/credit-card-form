@@ -12,6 +12,7 @@ import CreditCard from "./CreditCard";
 import ExpSelect from "./ExpSelect";
 import { getExpYears, transformCardNum } from "../utils";
 import TextInput from "./TextInput";
+import MovingBox from "./MovingBox";
 
 export default function CreditCardForm(props) {
   const [cardNum, setCardNum] = useState("");
@@ -21,6 +22,39 @@ export default function CreditCardForm(props) {
   const [cardExpYear, setCardExpYear] = useState("YY");
   const [cardFront, setCardFront] = useState(true);
   const [cardLogo, setCardLogo] = useState("visa");
+  const [boxStart, setBoxStart] = useState({
+    opacity: 0,
+    height: "0px",
+    width: "0px",
+    top: 0,
+    left: 0,
+  });
+  const [boxEnd, setBoxEnd] = useState({
+    opacity: 1,
+    height: "0px",
+    width: "0px",
+    top: 0,
+    left: 0,
+  });
+
+  const boxSettings = {
+    num: { height: "50px", width: "330px", top: "168px", left: "80px" },
+    name: { height: "60px", width: "270px", top: "212px", left: "80px" },
+    exp: { height: "60px", width: "5.5rem", top: "212px", left: "398px" },
+    cvv: {
+      opacity: 0,
+      height: "0px",
+      width: "0px",
+      top: 0,
+      left: 0,
+    },
+  };
+
+  function moveBox(e) {
+    const name = e.target.name.split("-")[2];
+    setBoxStart(boxEnd);
+    setBoxEnd(boxSettings[name]);
+  }
 
   function validateUserInput(e) {
     const name = e.target.name;
@@ -90,10 +124,10 @@ export default function CreditCardForm(props) {
     "12",
   ];
   const years = getExpYears(new Date().getFullYear());
-  console.log(cardLogo);
 
   return (
     <Container className='cc-form pb-4 px-4'>
+      <MovingBox boxStart={boxStart} boxEnd={boxEnd} />
       <CreditCard
         cardNum={cardNum}
         cardName={cardName}
@@ -110,6 +144,7 @@ export default function CreditCardForm(props) {
           name='card-form-num'
           value={transformCardNum(cardNum, cardLogo)}
           onChange={validateUserInput}
+          onFocus={moveBox}
           maxLength={cardLogo === "amex" ? "17" : "19"}
         />
         <TextInput
@@ -118,6 +153,7 @@ export default function CreditCardForm(props) {
           name='card-form-name'
           value={cardName}
           onChange={validateUserInput}
+          onFocus={moveBox}
           maxLength='26'
         />
         <Row>
@@ -132,6 +168,7 @@ export default function CreditCardForm(props) {
                     <option value={month}>{month}</option>
                   ))}
                   onChange={setCardExpMonth}
+                  onFocus={moveBox}
                 />
                 <ExpSelect
                   id='yy'
@@ -140,6 +177,7 @@ export default function CreditCardForm(props) {
                     <option value={year.toString().slice(2)}>{year}</option>
                   ))}
                   onChange={setCardExpYear}
+                  onFocus={moveBox}
                 />
               </Row>
             </FormGroup>
@@ -151,7 +189,10 @@ export default function CreditCardForm(props) {
               name='card-form-cvv'
               value={cardCVV}
               onChange={validateUserInput}
-              onFocus={() => setCardFront(!cardFront)}
+              onFocus={(e) => {
+                setCardFront(!cardFront);
+                moveBox(e);
+              }}
               maxLength={cardLogo === "amex" ? "4" : "3"}
             />
           </Col>
