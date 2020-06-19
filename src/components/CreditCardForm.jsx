@@ -143,7 +143,10 @@ export default function CreditCardForm(props) {
           label='Card Number'
           name='card-form-num'
           value={transformCardNum(cardNum, cardLogo)}
-          onChange={validateUserInput}
+          onChange={(e) => {
+            validateUserInput(e);
+            moveBox(e);
+          }}
           onFocus={moveBox}
           maxLength={cardLogo === "amex" ? "17" : "19"}
         />
@@ -152,7 +155,10 @@ export default function CreditCardForm(props) {
           label='Card Holder'
           name='card-form-name'
           value={cardName}
-          onChange={validateUserInput}
+          onChange={(e) => {
+            validateUserInput(e);
+            moveBox(e);
+          }}
           onFocus={moveBox}
           maxLength='26'
         />
@@ -167,7 +173,10 @@ export default function CreditCardForm(props) {
                   items={months.map((month) => (
                     <option value={month}>{month}</option>
                   ))}
-                  onChange={setCardExpMonth}
+                  onChange={(e) => {
+                    setCardExpMonth(e.target.value);
+                    moveBox(e);
+                  }}
                   onFocus={moveBox}
                 />
                 <ExpSelect
@@ -176,7 +185,10 @@ export default function CreditCardForm(props) {
                   items={years.map((year) => (
                     <option value={year.toString().slice(2)}>{year}</option>
                   ))}
-                  onChange={setCardExpYear}
+                  onChange={(e) => {
+                    setCardExpYear(e.target.value);
+                    moveBox(e);
+                  }}
                   onFocus={moveBox}
                 />
               </Row>

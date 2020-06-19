@@ -16,10 +16,7 @@ export default function ExpSelect({
         className='custom-select'
         name='card-form-exp'
         id={`card-form-exp__${id}`}
-        onChange={(e) => {
-          onChange(e.target.value);
-          onFocus(e); // prevents MovingBox from animating when the user makes a selection
-        }}
+        onChange={onChange}
         onFocus={(e) => {
           setDisable(true);
           onFocus(e);
