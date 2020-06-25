@@ -12,9 +12,8 @@ import CreditCard from "./CreditCard";
 import ExpSelect from "./ExpSelect";
 import { getExpYears, transformCardNum } from "../utils";
 import TextInput from "./TextInput";
-import MovingBox from "./MovingBox";
 
-export default function CreditCardForm(props) {
+export default function CreditCardForm() {
   const [cardNum, setCardNum] = useState("");
   const [cardName, setCardName] = useState("");
   const [cardCVV, setCardCVV] = useState("");
@@ -38,9 +37,14 @@ export default function CreditCardForm(props) {
   });
 
   const boxSettings = {
-    num: { height: "50px", width: "330px", top: "168px", left: "80px" },
-    name: { height: "60px", width: "270px", top: "212px", left: "80px" },
-    exp: { height: "60px", width: "5.5rem", top: "212px", left: "398px" },
+    num: { height: "20%", width: "83%", top: "52%", left: "8%" },
+    name: {
+      height: "20%",
+      width: "70%",
+      top: "78%",
+      left: "3%",
+    },
+    exp: { height: "20%", width: "20%", top: "78%", left: "78%" },
     cvv: {
       opacity: 0,
       height: "0px",
@@ -126,8 +130,7 @@ export default function CreditCardForm(props) {
   const years = getExpYears(new Date().getFullYear());
 
   return (
-    <Container className='cc-form pb-4 px-4'>
-      <MovingBox boxStart={boxStart} boxEnd={boxEnd} />
+    <Container className='cc-form pb-4 px-4 d-flex flex-column'>
       <CreditCard
         cardNum={cardNum}
         cardName={cardName}
@@ -136,6 +139,8 @@ export default function CreditCardForm(props) {
         cardExpYear={cardExpYear}
         cardFront={cardFront}
         cardLogo={cardLogo}
+        boxStart={boxStart}
+        boxEnd={boxEnd}
       />
       <Form className='mx-2 mt-5' onSubmit={handleSubmit}>
         <TextInput
@@ -163,7 +168,7 @@ export default function CreditCardForm(props) {
           maxLength='26'
         />
         <Row>
-          <Col sm={8}>
+          <Col sm={8} xs={8}>
             <FormGroup>
               <Label for='card-form-exp'>Expiration Date</Label>
               <Row>
@@ -194,7 +199,7 @@ export default function CreditCardForm(props) {
               </Row>
             </FormGroup>
           </Col>
-          <Col sm={4} className='pr-0'>
+          <Col sm={4} xs={4} className='pr-0'>
             <TextInput
               size={6}
               label='CVV'
@@ -209,6 +214,7 @@ export default function CreditCardForm(props) {
             />
           </Col>
         </Row>
+
         <Button
           className='btn-wide mt-3'
           type='submit'

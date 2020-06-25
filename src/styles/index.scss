@@ -19,108 +19,129 @@ code {
   flex-direction: column;
   justify-content: center;
   height: 100vh;
-  //   align-items: center;
-  //   position: relative;
+  background-color: skyblue;
 }
 
 .cc-form {
   position: relative;
-  align-self: center;
-  justify-self: center;
   width: 100%;
+
   border: 1px solid lightblue;
   border-radius: 10px;
-  // padding-top: 100px;
+  background-color: white;
+  padding-top: 6em;
+
+  @media screen and (max-width: 600px) {
+    border-radius: 0;
+    height: 100%;
+    padding-top: 0;
+  }
 }
 
 .cc-form__label {
   border: 1px solid;
-  //   align-self: start;
-}
-
-// .col-sm-12 {
-//   padding-left: 0;
-// }
-
-// .col {
-//   padding-left: 0;
-// }
-
-.custom-select {
-  margin-left: -15px;
 }
 
 .credit-card {
   position: relative;
-  // margin-left: auto;
-  // position: fixed;
-  top: 50px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
   width: 100%;
-  top: 5%;
+  top: -65%;
   z-index: 1;
   color: white;
   font-size: 1.2rem;
-  // font-weight: bold;
   line-height: normal;
-
-  max-width: 430px;
-  height: 270px;
-  // background-image: url("../images/24.jpeg");
-  // background-position: center;
-  // background-repeat: no-repeat;
+  max-width: 100%;
   border-radius: 15px;
 
+  @media screen and (max-width: 600px) {
+    position: static;
+    border-radius: 0;
+    padding-top: 1em;
+  }
+
   //FRONT
+  &__logo {
+    width: 22%;
+    height: 18%;
+    margin-top: 5%;
+    margin-right: 4%;
+    align-self: flex-end;
+    object-fit: cover;
+  }
 
   &__chip {
-    width: 60px;
-    height: 48px;
-    border-radius: 15px;
+    width: 15%;
+    height: 20%;
+    border-radius: 20px;
     object-fit: cover;
+    margin-bottom: 6%;
+    margin-left: 10%;
   }
 
   &__num,
   &__name,
   &__dates,
   &__cvv {
-    // margin-left: 25px;
     display: flex;
     flex-direction: row;
   }
 
   &__num {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     letter-spacing: 0.1rem;
+    align-self: center;
+    margin-bottom: 8%;
 
-    .char {
-      min-width: 1rem;
+    // .char {
+    //   min-width: 4%;
+    // }
+
+    @media screen and (max-width: 600px) {
+      font-size: 1.25rem;
     }
+  }
+
+  // &__name,
+  // &__dates,
+  // &__cvv {
+  //   .char {
+  //     min-width: 4%;
+  //   }
+  // }
+
+  .char {
+    min-width: 4%;
+  }
+
+  .card-holder {
+    margin-left: 5%;
+  }
+  .valid-thru {
+    margin-left: 40%;
   }
 
   &__name,
-  &__dates,
-  &__cvv {
-    .char {
-      min-width: 0.5rem;
+  &__dates {
+    @media screen and (max-width: 600px) {
+      font-size: 0.9rem;
     }
-  }
-
-  &__exp {
-  }
-
-  &__logo {
-    height: 50px;
-    max-width: 100px;
-    margin: 15px 12px;
-    align-self: flex-end;
-    object-fit: contain;
   }
 
   &__label {
     font-size: 0.6rem;
     text-transform: uppercase;
+
+    @media screen and (max-width: 600px) {
+      font-size: 0.5rem;
+    }
   }
 
   //BACK
@@ -165,6 +186,9 @@ code {
 .cvv-label {
   align-self: flex-end;
   font-size: 1rem;
+  @media screen and (max-width: 600px) {
+    font-size: 0.8rem;
+  }
 }
 
 .moving-box {

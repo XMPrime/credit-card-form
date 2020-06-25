@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col } from "reactstrap";
 import AnimatedChar from "./AnimatedChar";
+import MovingBox from "./MovingBox";
 import chip from "../images/cc-chip.png";
 import cardImg from "../images/24.jpeg";
 
@@ -10,6 +11,8 @@ export default function CreditCardFront({
   cardExpMonth,
   cardExpYear,
   cardLogo,
+  boxStart,
+  boxEnd,
 }) {
   function addHashes(str) {
     const parts = str.split(" ");
@@ -51,21 +54,22 @@ export default function CreditCardFront({
   const cardNumDisplay = addHashes(cardNum, cardLogo);
   return (
     <div className='front px-0 d-flex flex-column' key={1}>
+      <MovingBox boxStart={boxStart} boxEnd={boxEnd} />
       <img className='credit-card__img' src={cardImg} alt='credit card bg' />
       <img
-        className='credit-card__logo mb-3'
+        className='credit-card__logo'
         src={require(`../images/${cardLogo}.png`)}
         alt='card logo'
       />
 
-      <img className='credit-card__chip ml-5 mb-3' src={chip} alt='chip' />
-      <div className='credit-card__num ml-4 mb-3'>
+      <img className='credit-card__chip' src={chip} alt='chip' />
+      <div className='credit-card__num'>
         {cardNumDisplay.map((char) => (
           <AnimatedChar char={char} />
         ))}
       </div>
-      <Row className='justify-content-between mx-4'>
-        <Col sm={8} className='px-0 '>
+      <Row className='justify-content-between card-holder'>
+        <Col sm={8} xs={8} className='px-0 '>
           <div className='credit-card__label'>CARD HOLDER</div>
           <div className='credit-card__name'>
             {cardName === "" ? (
@@ -78,11 +82,11 @@ export default function CreditCardFront({
           </div>
         </Col>
 
-        <Col sm={2} className='px-0'>
-          <div className='credit-card__label'>VALID THRU</div>
-          <div className='credit-card__dates'>
+        <Col sm={4} xs={4} className='px-0'>
+          <div className='credit-card__label valid-thru'>VALID THRU</div>
+          <div className='credit-card__dates valid-thru'>
             <AnimatedChar char={cardExpMonth} />
-            <span>/</span>
+            /
             <AnimatedChar char={cardExpYear} />
           </div>
         </Col>

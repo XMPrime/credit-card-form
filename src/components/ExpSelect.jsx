@@ -11,7 +11,7 @@ export default function ExpSelect({
   const [disable, setDisable] = useState(false);
 
   return (
-    <Col sm={6}>
+    <Col xs={6}>
       <select
         className='custom-select'
         name='card-form-exp'

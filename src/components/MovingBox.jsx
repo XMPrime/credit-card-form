@@ -23,6 +23,8 @@ export default function MovingBox({ boxStart, boxEnd }) {
       opacity: 0,
     },
   };
+  // boxVariants.initial = { ...boxVariants.initial, ...boxStart };
+  // boxVariants.initial = { ...boxVariants.animate, ...boxEnd };
   Object.assign(boxVariants.initial, boxStart);
   Object.assign(boxVariants.animate, boxEnd);
 

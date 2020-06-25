@@ -11,9 +11,11 @@ export default function CreditCard({
   cardExpYear,
   cardFront,
   cardLogo,
+  boxStart,
+  boxEnd,
 }) {
   return (
-    <Container className='credit-card px-0'>
+    <Container className='credit-card px-0 d-flex flex-column justify-content-center'>
       <div className={`cover ${cardFront || "flip"}`}>
         <CreditCardFront
           cardNum={cardNum}
@@ -22,6 +24,8 @@ export default function CreditCard({
           cardLogo={cardLogo}
           cardExpMonth={cardExpMonth}
           cardExpYear={cardExpYear}
+          boxStart={boxStart}
+          boxEnd={boxEnd}
         />
         <CreditCardBack cardName={cardName} cardCVV={cardCVV} />
       </div>

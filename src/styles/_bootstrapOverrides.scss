@@ -26,4 +26,32 @@
   .col-sm-8 {
     padding-left: 0;
   }
+  .col-sm-6 {
+    padding-left: 0;
+    padding-right: 1.5rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    .row {
+      width: 100%;
+    }
+
+    .col-sm-8 {
+      padding-right: 0;
+    }
+    .col-sm-6 {
+      width: 100%;
+      padding: 0;
+    }
+    .custom-select {
+      width: 100%;
+    }
+    .col-sm-4 {
+      padding-left: 0;
+    }
+  }
+}
+
+.col-6 {
+  padding-left: 0;
 }
