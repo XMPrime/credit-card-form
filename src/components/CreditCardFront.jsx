@@ -4,6 +4,7 @@ import AnimatedChar from "./AnimatedChar";
 import MovingBox from "./MovingBox";
 import chip from "../images/cc-chip.png";
 import cardImg from "../images/24.jpeg";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CreditCardFront({
   cardNum,
@@ -65,7 +66,7 @@ export default function CreditCardFront({
       <img className='credit-card__chip' src={chip} alt='chip' />
       <div className='credit-card__num'>
         {cardNumDisplay.map((char) => (
-          <AnimatedChar char={char} />
+          <AnimatedChar key={uuidv4()} char={char} />
         ))}
       </div>
       <Row className='justify-content-between card-holder'>
@@ -77,7 +78,9 @@ export default function CreditCardFront({
             ) : (
               cardName
                 .split("")
-                .map((char) => <AnimatedChar char={char.toUpperCase()} />)
+                .map((char) => (
+                  <AnimatedChar key={uuidv4()} char={char.toUpperCase()} />
+                ))
             )}
           </div>
         </Col>
