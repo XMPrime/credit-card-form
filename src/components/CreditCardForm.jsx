@@ -176,7 +176,9 @@ export default function CreditCardForm() {
                   id='mm'
                   defaultOption='Month'
                   items={months.map((month) => (
-                    <option value={month}>{month}</option>
+                    <option key={month} value={month}>
+                      {month}
+                    </option>
                   ))}
                   onChange={(e) => {
                     setCardExpMonth(e.target.value);
@@ -188,7 +190,9 @@ export default function CreditCardForm() {
                   id='yy'
                   defaultOption='Year'
                   items={years.map((year) => (
-                    <option value={year.toString().slice(2)}>{year}</option>
+                    <option key={year} value={year.toString().slice(2)}>
+                      {year}
+                    </option>
                   ))}
                   onChange={(e) => {
                     setCardExpYear(e.target.value);
