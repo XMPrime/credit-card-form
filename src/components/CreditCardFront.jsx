@@ -89,7 +89,7 @@ export default function CreditCardFront({
           <div className='credit-card__label valid-thru'>VALID THRU</div>
           <div className='credit-card__dates valid-thru'>
             <AnimatedChar char={cardExpMonth} />
-            /
+            <span className='forward-slash'>/</span>
             <AnimatedChar char={cardExpYear} />
           </div>
         </Col>

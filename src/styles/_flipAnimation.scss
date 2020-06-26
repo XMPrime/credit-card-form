@@ -25,15 +25,12 @@
 .back {
   position: absolute;
   width: 100%;
-  height: 277.11px;
-  @media screen and (max-width: 600px) {
-    height: 210px;
-  }
+  height: auto;
+  border-radius: 10px;
+  // background-image: url(../images/24.jpeg);
+  // background-position: center;
+  // background-size: cover;
   backface-visibility: hidden;
-}
-
-.back {
-  //   z-index: -1;
 }
 
 .credit-card__img {

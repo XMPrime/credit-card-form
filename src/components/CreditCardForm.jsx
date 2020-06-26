@@ -29,7 +29,7 @@ export default function CreditCardForm() {
     left: 0,
   });
   const [boxEnd, setBoxEnd] = useState({
-    opacity: 1,
+    opacity: 0,
     height: "0px",
     width: "0px",
     top: 0,
@@ -37,14 +37,14 @@ export default function CreditCardForm() {
   });
 
   const boxSettings = {
-    num: { height: "20%", width: "83%", top: "52%", left: "8%" },
+    num: { height: "20%", width: "83%", top: "54%", left: "8%" },
     name: {
       height: "20%",
       width: "70%",
-      top: "78%",
+      top: "75%",
       left: "3%",
     },
-    exp: { height: "20%", width: "20%", top: "78%", left: "78%" },
+    exp: { height: "20%", width: "22%", top: "75%", left: "75%" },
     cvv: {
       opacity: 0,
       height: "0px",
@@ -130,7 +130,7 @@ export default function CreditCardForm() {
   const years = getExpYears(new Date().getFullYear());
 
   return (
-    <Container className='cc-form pb-4 px-4 d-flex flex-column'>
+    <Container className='cc-form pb-4 px-4'>
       <CreditCard
         cardNum={cardNum}
         cardName={cardName}
@@ -142,7 +142,7 @@ export default function CreditCardForm() {
         boxStart={boxStart}
         boxEnd={boxEnd}
       />
-      <Form className='mx-2 mt-5' onSubmit={handleSubmit}>
+      <Form className='mx-2 mt-1' onSubmit={handleSubmit}>
         <TextInput
           size={12}
           label='Card Number'

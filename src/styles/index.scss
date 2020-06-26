@@ -25,16 +25,15 @@ code {
 .cc-form {
   position: relative;
   width: 100%;
-
   border: 1px solid lightblue;
   border-radius: 10px;
   background-color: white;
-  padding-top: 6em;
+  padding-top: 10em;
 
   @media screen and (max-width: 600px) {
     border-radius: 0;
     height: 100%;
-    padding-top: 0;
+    padding-top: 65%;
   }
 }
 
@@ -43,25 +42,27 @@ code {
 }
 
 .credit-card {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  width: 100%;
-  top: -65%;
+  // margin: 0 auto;
+  top: -25%;
+  left: 10%;
+  width: 80%;
   z-index: 1;
   color: white;
-  font-size: 1.2rem;
   line-height: normal;
   max-width: 100%;
   border-radius: 15px;
 
   @media screen and (max-width: 600px) {
-    position: static;
+    position: absolute;
+    top: 0;
     border-radius: 0;
-    padding-top: 1em;
+    padding-top: 10%;
+    margin-bottom: 10%;
   }
 
   //FRONT
@@ -92,46 +93,49 @@ code {
   }
 
   &__num {
-    font-size: 1.8rem;
     width: 100%;
     display: flex;
     justify-content: center;
     letter-spacing: 0.1rem;
     align-self: center;
-    margin-bottom: 8%;
+    margin-bottom: 5%;
 
-    // .char {
-    //   min-width: 4%;
-    // }
+    .char {
+      font-size: 1.6rem;
+      min-width: 1rem;
+    }
 
     @media screen and (max-width: 600px) {
-      font-size: 1.25rem;
+      .char {
+        font-size: 5.2vw;
+        min-width: 3%;
+      }
     }
-  }
-
-  // &__name,
-  // &__dates,
-  // &__cvv {
-  //   .char {
-  //     min-width: 4%;
-  //   }
-  // }
-
-  .char {
-    min-width: 4%;
-  }
-
-  .card-holder {
-    margin-left: 5%;
-  }
-  .valid-thru {
-    margin-left: 40%;
   }
 
   &__name,
   &__dates {
+    .char {
+      font-size: 1.2rem;
+    }
+
     @media screen and (max-width: 600px) {
-      font-size: 0.9rem;
+      .forward-slash,
+      .char {
+        font-size: 4vw;
+        min-width: 4%;
+      }
+    }
+  }
+
+  .card-holder {
+    margin-left: 5%;
+    margin-bottom: 5%;
+  }
+  .valid-thru {
+    margin-left: 35%;
+    @media screen and (max-width: 600px) {
+      margin-left: 30%;
     }
   }
 
@@ -152,6 +156,10 @@ code {
     margin-top: 20px;
     padding-top: 1rem;
     background-color: black;
+
+    @media screen and (max-width: 600px) {
+      height: 5vh;
+    }
   }
 
   &__white-box {
@@ -162,6 +170,9 @@ code {
     height: 45px;
     width: 92%;
     padding: 0 10px;
+    @media screen and (max-width: 600px) {
+      height: 4.5vh;
+    }
   }
 
   &__signature {
