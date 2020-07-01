@@ -16,7 +16,7 @@ export default function CreditCard({
 }) {
   return (
     <Container className='credit-card px-0 d-flex flex-column justify-content-center'>
-      <div className={`cover ${cardFront || "flip"}`}>
+      <div className={`cover${cardFront ? "" : " flip"}`}>
         <CreditCardFront
           cardNum={cardNum}
           cardName={cardName}
@@ -27,7 +27,11 @@ export default function CreditCard({
           boxStart={boxStart}
           boxEnd={boxEnd}
         />
-        <CreditCardBack cardName={cardName} cardCVV={cardCVV} />
+        <CreditCardBack
+          cardName={cardName}
+          cardCVV={cardCVV}
+          cardLogo={cardLogo}
+        />
       </div>
     </Container>
   );

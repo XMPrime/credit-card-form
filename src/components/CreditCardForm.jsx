@@ -37,20 +37,42 @@ export default function CreditCardForm() {
   });
 
   const boxSettings = {
-    num: { height: "20%", width: "83%", top: "54%", left: "8%" },
+    num: {
+      height: "20%",
+      width: "83%",
+      top: "50%",
+      left: 0,
+      right: 0,
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
     name: {
       height: "20%",
       width: "70%",
-      top: "75%",
+      top: "77%",
       left: "3%",
+      right: "none",
+      marginLeft: "none",
+      marginRight: "none",
     },
-    exp: { height: "20%", width: "22%", top: "75%", left: "75%" },
+    exp: {
+      height: "20%",
+      width: "22%",
+      top: "77%",
+      left: "76%",
+      right: "none",
+      marginLeft: "none",
+      marginRight: "none",
+    },
     cvv: {
       opacity: 0,
       height: "0px",
       width: "0px",
       top: 0,
       left: 0,
+      right: "none",
+      marginLeft: "none",
+      marginRight: "none",
     },
   };
 
@@ -69,7 +91,6 @@ export default function CreditCardForm() {
     switch (name) {
       case "card-form-num":
         regex = /[0-9 ]/;
-        console.log(userInput[0], cardNum[0]);
         if (userInput[0] !== cardNum[0] || userInput[1] !== cardNum[1]) {
           if (userInput[0] === "4") setCardLogo("visa");
           else if (userInput[0] === "5") setCardLogo("master");
@@ -128,7 +149,6 @@ export default function CreditCardForm() {
     "12",
   ];
   const years = getExpYears(new Date().getFullYear());
-
   return (
     <Container className='cc-form pb-4 px-4'>
       <CreditCard
@@ -174,7 +194,7 @@ export default function CreditCardForm() {
               <Row>
                 <ExpSelect
                   id='mm'
-                  defaultOption='Month'
+                  defaultOption={window.innerWidth >= 600 ? "Month" : "MM"}
                   items={months.map((month) => (
                     <option key={month} value={month}>
                       {month}
@@ -188,7 +208,7 @@ export default function CreditCardForm() {
                 />
                 <ExpSelect
                   id='yy'
-                  defaultOption='Year'
+                  defaultOption={window.innerWidth >= 600 ? "Year" : "YY"}
                   items={years.map((year) => (
                     <option key={year} value={year.toString().slice(2)}>
                       {year}

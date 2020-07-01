@@ -4,7 +4,6 @@ import AnimatedChar from "./AnimatedChar";
 import MovingBox from "./MovingBox";
 import chip from "../images/cc-chip.png";
 import cardImg from "../images/24.jpeg";
-import { v4 as uuidv4 } from "uuid";
 
 export default function CreditCardFront({
   cardNum,
@@ -54,7 +53,7 @@ export default function CreditCardFront({
 
   const cardNumDisplay = addHashes(cardNum, cardLogo);
   return (
-    <div className='front px-0 d-flex flex-column' key={1}>
+    <div className='front px-0 d-flex flex-column'>
       <MovingBox boxStart={boxStart} boxEnd={boxEnd} />
       <img className='credit-card__img' src={cardImg} alt='credit card bg' />
       <img
@@ -65,12 +64,12 @@ export default function CreditCardFront({
 
       <img className='credit-card__chip' src={chip} alt='chip' />
       <div className='credit-card__num'>
-        {cardNumDisplay.map((char) => (
-          <AnimatedChar key={uuidv4()} char={char} />
+        {cardNumDisplay.map((char, i) => (
+          <AnimatedChar key={i} char={char} />
         ))}
       </div>
-      <Row className='justify-content-between card-holder'>
-        <Col sm={8} xs={8} className='px-0 '>
+      <Row className='justify-content-between'>
+        <div className='card-holder px-0 '>
           <div className='credit-card__label'>CARD HOLDER</div>
           <div className='credit-card__name'>
             {cardName === "" ? (
@@ -78,21 +77,21 @@ export default function CreditCardFront({
             ) : (
               cardName
                 .split("")
-                .map((char) => (
-                  <AnimatedChar key={uuidv4()} char={char.toUpperCase()} />
+                .map((char, i) => (
+                  <AnimatedChar key={i} char={char.toUpperCase()} />
                 ))
             )}
           </div>
-        </Col>
+        </div>
 
-        <Col sm={4} xs={4} className='px-0'>
-          <div className='credit-card__label valid-thru'>VALID THRU</div>
-          <div className='credit-card__dates valid-thru'>
+        <div className='valid-thru px-0'>
+          <div className='credit-card__label'>VALID THRU</div>
+          <div className='credit-card__dates'>
             <AnimatedChar char={cardExpMonth} />
             <span className='forward-slash'>/</span>
             <AnimatedChar char={cardExpYear} />
           </div>
-        </Col>
+        </div>
       </Row>
     </div>
   );

@@ -67,21 +67,24 @@ code {
 
   //FRONT
   &__logo {
+    position: absolute;
     width: 22%;
-    height: 18%;
-    margin-top: 5%;
-    margin-right: 4%;
+    height: auto;
+    top: 8%;
+    right: 4%;
     align-self: flex-end;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: top right;
   }
 
   &__chip {
+    position: absolute;
+    top: 25%;
+    left: 10%;
     width: 15%;
-    height: 20%;
-    border-radius: 20px;
+    height: auto;
+    border-radius: 10px;
     object-fit: cover;
-    margin-bottom: 6%;
-    margin-left: 10%;
   }
 
   &__num,
@@ -98,44 +101,53 @@ code {
     justify-content: center;
     letter-spacing: 0.1rem;
     align-self: center;
-    margin-bottom: 5%;
+    margin-top: 35%;
 
     .char {
-      font-size: 1.6rem;
-      min-width: 1rem;
+      font-size: 1.7rem;
+      min-width: 4%;
     }
 
     @media screen and (max-width: 600px) {
       .char {
-        font-size: 5.2vw;
-        min-width: 3%;
+        font-size: 5vw;
+        min-width: 3.5%;
+        margin-bottom: 0.25rem;
       }
     }
   }
 
+  .card-holder,
+  .valid-thru {
+    margin-top: 9%;
+    margin-bottom: 4%;
+    @media screen and (max-width: 600px) {
+      margin-top: 7%;
+    }
+  }
+
+  .card-holder {
+    margin-left: 5%;
+    width: 60%;
+  }
+  .valid-thru {
+    margin-right: 5%;
+    // margin-left: 35%;
+  }
+
   &__name,
   &__dates {
+    .forward-slash,
     .char {
       font-size: 1.2rem;
+      min-width: 4%;
     }
 
     @media screen and (max-width: 600px) {
       .forward-slash,
       .char {
         font-size: 4vw;
-        min-width: 4%;
       }
-    }
-  }
-
-  .card-holder {
-    margin-left: 5%;
-    margin-bottom: 5%;
-  }
-  .valid-thru {
-    margin-left: 35%;
-    @media screen and (max-width: 600px) {
-      margin-left: 30%;
     }
   }
 
@@ -144,7 +156,8 @@ code {
     text-transform: uppercase;
 
     @media screen and (max-width: 600px) {
-      font-size: 0.5rem;
+      font-size: 0.45rem;
+      margin-bottom: -0.25rem;
     }
   }
 
@@ -170,8 +183,11 @@ code {
     height: 45px;
     width: 92%;
     padding: 0 10px;
+    font-size: 1.4rem;
     @media screen and (max-width: 600px) {
+      margin-top: 0.25rem;
       height: 4.5vh;
+      font-size: 1rem;
     }
   }
 
@@ -197,8 +213,12 @@ code {
 .cvv-label {
   align-self: flex-end;
   font-size: 1rem;
+  margin-right: 6%;
+  margin-top: 8%;
   @media screen and (max-width: 600px) {
     font-size: 0.8rem;
+    margin-right: 7%;
+    margin-top: 5%;
   }
 }
 

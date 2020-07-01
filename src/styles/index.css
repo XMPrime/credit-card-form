@@ -8,19 +8,13 @@
   position: relative;
   width: 100%;
   max-width: 430px;
-  height: 100%;
+  height: auto;
   -webkit-transition: -webkit-transform 0.8s;
   transition: -webkit-transform 0.8s;
   transition: transform 0.8s;
   transition: transform 0.8s, -webkit-transform 0.8s;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-}
-
-@media screen and (max-width: 600px) {
-  .cover {
-    height: 210px;
-  }
 }
 
 .flip {
@@ -32,7 +26,6 @@
 .back {
   position: absolute;
   width: 100%;
-  height: auto;
   border-radius: 10px;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
@@ -196,24 +189,28 @@ code {
 }
 
 .credit-card__logo {
+  position: absolute;
   width: 22%;
-  height: 18%;
-  margin-top: 5%;
-  margin-right: 4%;
+  height: auto;
+  top: 8%;
+  right: 4%;
   -ms-flex-item-align: end;
       align-self: flex-end;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: top right;
+     object-position: top right;
 }
 
 .credit-card__chip {
+  position: absolute;
+  top: 25%;
+  left: 10%;
   width: 15%;
-  height: 20%;
-  border-radius: 20px;
+  height: auto;
+  border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
-  margin-bottom: 6%;
-  margin-left: 10%;
 }
 
 .credit-card__num, .credit-card__name, .credit-card__dates, .credit-card__cvv {
@@ -237,23 +234,49 @@ code {
   letter-spacing: 0.1rem;
   -ms-flex-item-align: center;
       align-self: center;
-  margin-bottom: 5%;
+  margin-top: 35%;
 }
 
 .credit-card__num .char {
-  font-size: 1.6rem;
-  min-width: 1rem;
+  font-size: 1.7rem;
+  min-width: 4%;
 }
 
 @media screen and (max-width: 600px) {
   .credit-card__num .char {
-    font-size: 5.2vw;
-    min-width: 3%;
+    font-size: 5vw;
+    min-width: 3.5%;
+    margin-bottom: 0.25rem;
   }
 }
 
-.credit-card__name .char, .credit-card__dates .char {
+.credit-card .card-holder,
+.credit-card .valid-thru {
+  margin-top: 9%;
+  margin-bottom: 4%;
+}
+
+@media screen and (max-width: 600px) {
+  .credit-card .card-holder,
+  .credit-card .valid-thru {
+    margin-top: 7%;
+  }
+}
+
+.credit-card .card-holder {
+  margin-left: 5%;
+  width: 60%;
+}
+
+.credit-card .valid-thru {
+  margin-right: 5%;
+}
+
+.credit-card__name .forward-slash,
+.credit-card__name .char, .credit-card__dates .forward-slash,
+.credit-card__dates .char {
   font-size: 1.2rem;
+  min-width: 4%;
 }
 
 @media screen and (max-width: 600px) {
@@ -261,22 +284,6 @@ code {
   .credit-card__name .char, .credit-card__dates .forward-slash,
   .credit-card__dates .char {
     font-size: 4vw;
-    min-width: 4%;
-  }
-}
-
-.credit-card .card-holder {
-  margin-left: 5%;
-  margin-bottom: 5%;
-}
-
-.credit-card .valid-thru {
-  margin-left: 35%;
-}
-
-@media screen and (max-width: 600px) {
-  .credit-card .valid-thru {
-    margin-left: 30%;
   }
 }
 
@@ -287,7 +294,8 @@ code {
 
 @media screen and (max-width: 600px) {
   .credit-card__label {
-    font-size: 0.5rem;
+    font-size: 0.45rem;
+    margin-bottom: -0.25rem;
   }
 }
 
@@ -313,11 +321,14 @@ code {
   height: 45px;
   width: 92%;
   padding: 0 10px;
+  font-size: 1.4rem;
 }
 
 @media screen and (max-width: 600px) {
   .credit-card__white-box {
+    margin-top: 0.25rem;
     height: 4.5vh;
+    font-size: 1rem;
   }
 }
 
@@ -345,11 +356,15 @@ code {
   -ms-flex-item-align: end;
       align-self: flex-end;
   font-size: 1rem;
+  margin-right: 6%;
+  margin-top: 8%;
 }
 
 @media screen and (max-width: 600px) {
   .cvv-label {
     font-size: 0.8rem;
+    margin-right: 7%;
+    margin-top: 5%;
   }
 }
 
