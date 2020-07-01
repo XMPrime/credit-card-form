@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "reactstrap";
+import { Row } from "reactstrap";
 import AnimatedChar from "./AnimatedChar";
 import MovingBox from "./MovingBox";
 import chip from "../images/cc-chip.png";
