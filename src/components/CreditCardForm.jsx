@@ -56,10 +56,10 @@ export default function CreditCardForm() {
       left: "76%",
     },
     cvv: {
-      // opacity: 0,
+      opacity: 0,
       height: "0px",
       width: "0px",
-      top: -1000,
+      top: 0,
       left: 0,
     },
   };

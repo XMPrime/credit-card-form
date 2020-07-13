@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Row } from "reactstrap";
 import AnimatedChar from "./AnimatedChar";
 import MovingBox from "./MovingBox";
@@ -14,6 +14,8 @@ export default function CreditCardFront({
   boxStart,
   boxEnd,
 }) {
+  const [showMovingBox, setShowMovingBox] = useState(true);
+
   function addHashes(str) {
     const parts = str.split(" ");
     const lastPart = parts[parts.length - 1];
@@ -51,10 +53,20 @@ export default function CreditCardFront({
     return parts.join(" ").split("");
   }
 
+  function toggleMovingBox(e) {
+    e.target.id === "card-form-cvv"
+      ? setShowMovingBox(false)
+      : setShowMovingBox(true);
+  }
+
+  useEffect(() => {
+    document.addEventListener("focusin", toggleMovingBox);
+  }, []);
+
   const cardNumDisplay = addHashes(cardNum, cardLogo);
   return (
     <div className='front px-0 d-flex flex-column'>
-      <MovingBox boxStart={boxStart} boxEnd={boxEnd} />
+      {showMovingBox && <MovingBox boxStart={boxStart} boxEnd={boxEnd} />}
       <img className='credit-card__img' src={cardImg} alt='credit card bg' />
       <img
         className='credit-card__logo'
