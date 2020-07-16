@@ -274,14 +274,15 @@ code {
 .credit-card__name .char, .credit-card__dates .forward-slash,
 .credit-card__dates .char {
   font-size: 1.2rem;
-  min-width: 4%;
+  min-width: 0.7rem;
 }
 
 @media screen and (max-width: 600px) {
   .credit-card__name .forward-slash,
   .credit-card__name .char, .credit-card__dates .forward-slash,
   .credit-card__dates .char {
-    font-size: 4vw;
+    font-size: 0.9rem;
+    min-width: 0.4rem;
   }
 }
 
