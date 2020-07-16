@@ -47,7 +47,6 @@ code {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // margin: 0 auto;
   top: -25%;
   left: 10%;
   width: 80%;
@@ -96,7 +95,6 @@ code {
   }
 
   &__num {
-    width: 100%;
     display: flex;
     justify-content: center;
     letter-spacing: 0.1rem;
@@ -105,14 +103,13 @@ code {
 
     .char {
       font-size: 1.7rem;
-      min-width: 4%;
+      min-width: 1.2rem;
     }
 
     @media screen and (max-width: 600px) {
       .char {
-        font-size: 5vw;
-        min-width: 3.5%;
-        margin-bottom: 0.25rem;
+        font-size: 1.3rem;
+        min-width: 0.7rem;
       }
     }
   }
@@ -122,17 +119,16 @@ code {
     margin-top: 9%;
     margin-bottom: 4%;
     @media screen and (max-width: 600px) {
-      margin-top: 7%;
+      margin-top: 6%;
     }
   }
 
   .card-holder {
     margin-left: 5%;
-    width: 60%;
+    // width: 60%;
   }
   .valid-thru {
     margin-right: 5%;
-    // margin-left: 35%;
   }
 
   &__name,
@@ -156,8 +152,8 @@ code {
     text-transform: uppercase;
 
     @media screen and (max-width: 600px) {
-      font-size: 0.45rem;
-      margin-bottom: -0.25rem;
+      font-size: 0.5rem;
+      margin-bottom: -0.2rem;
     }
   }
 

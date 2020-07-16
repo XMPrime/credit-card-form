@@ -224,7 +224,6 @@ code {
 }
 
 .credit-card__num {
-  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -239,14 +238,13 @@ code {
 
 .credit-card__num .char {
   font-size: 1.7rem;
-  min-width: 4%;
+  min-width: 1.2rem;
 }
 
 @media screen and (max-width: 600px) {
   .credit-card__num .char {
-    font-size: 5vw;
-    min-width: 3.5%;
-    margin-bottom: 0.25rem;
+    font-size: 1.3rem;
+    min-width: 0.7rem;
   }
 }
 
@@ -259,13 +257,12 @@ code {
 @media screen and (max-width: 600px) {
   .credit-card .card-holder,
   .credit-card .valid-thru {
-    margin-top: 7%;
+    margin-top: 6%;
   }
 }
 
 .credit-card .card-holder {
   margin-left: 5%;
-  width: 60%;
 }
 
 .credit-card .valid-thru {
@@ -294,8 +291,8 @@ code {
 
 @media screen and (max-width: 600px) {
   .credit-card__label {
-    font-size: 0.45rem;
-    margin-bottom: -0.25rem;
+    font-size: 0.5rem;
+    margin-bottom: -0.2rem;
   }
 }
 

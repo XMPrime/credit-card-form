@@ -12,11 +12,17 @@ export default function CreditCardBack({ cardName, cardCVV, cardLogo }) {
         <div className='credit-card__signature'>{cardName}</div>
         <div className='credit-card__cvv'>
           {cardCVV === "" ? (
-            <AnimatedChar char={`${cardLogo === "amex" ? "****" : "***"}`} />
+            <div className='char'>{cardLogo === "amex" ? "****" : "***"}</div>
           ) : (
             cardCVV
               .split("")
-              .map((char, i) => <AnimatedChar key={i} char={char} />)
+              .map((char, i) => (
+                <AnimatedChar
+                  key={i}
+                  char={char.toUpperCase()}
+                  animateOnMount={true}
+                />
+              ))
           )}
         </div>
       </div>

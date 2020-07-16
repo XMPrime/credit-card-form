@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Row } from "reactstrap";
 import AnimatedChar from "./AnimatedChar";
-import MovingBox from "./MovingBox";
 import chip from "../images/cc-chip.png";
 import cardImg from "../images/24.jpeg";
 
@@ -11,11 +10,7 @@ export default function CreditCardFront({
   cardExpMonth,
   cardExpYear,
   cardLogo,
-  boxStart,
-  boxEnd,
 }) {
-  const [showMovingBox, setShowMovingBox] = useState(true);
-
   function addHashes(str) {
     const parts = str.split(" ");
     const lastPart = parts[parts.length - 1];
@@ -53,20 +48,10 @@ export default function CreditCardFront({
     return parts.join(" ").split("");
   }
 
-  function toggleMovingBox(e) {
-    e.target.id === "card-form-cvv"
-      ? setShowMovingBox(false)
-      : setShowMovingBox(true);
-  }
-
-  useEffect(() => {
-    document.addEventListener("focusin", toggleMovingBox);
-  }, []);
-
   const cardNumDisplay = addHashes(cardNum, cardLogo);
+
   return (
     <div className='front px-0 d-flex flex-column'>
-      {showMovingBox && <MovingBox boxStart={boxStart} boxEnd={boxEnd} />}
       <img className='credit-card__img' src={cardImg} alt='credit card bg' />
       <img
         className='credit-card__logo'
@@ -75,33 +60,37 @@ export default function CreditCardFront({
       />
 
       <img className='credit-card__chip' src={chip} alt='chip' />
-      <div className='credit-card__num'>
+      <div id='num' className='credit-card__num'>
         {cardNumDisplay.map((char, i) => (
-          <AnimatedChar key={i} char={char} />
+          <AnimatedChar key={i} char={char} animateOnMount={false} />
         ))}
       </div>
       <Row className='justify-content-between'>
-        <div className='card-holder px-0 '>
+        <div id='name' className='card-holder px-0 '>
           <div className='credit-card__label'>CARD HOLDER</div>
           <div className='credit-card__name'>
             {cardName === "" ? (
-              <AnimatedChar char='YOUR FULL NAME' />
+              <div className='char'>YOUR FULL NAME</div>
             ) : (
               cardName
                 .split("")
                 .map((char, i) => (
-                  <AnimatedChar key={i} char={char.toUpperCase()} />
+                  <AnimatedChar
+                    key={i}
+                    char={char.toUpperCase()}
+                    animateOnMount={true}
+                  />
                 ))
             )}
           </div>
         </div>
 
-        <div className='valid-thru px-0'>
+        <div id='exp' className='valid-thru px-0'>
           <div className='credit-card__label'>VALID THRU</div>
           <div className='credit-card__dates'>
-            <AnimatedChar char={cardExpMonth} />
+            <AnimatedChar char={cardExpMonth} animateOnMount={false} />
             <span className='forward-slash'>/</span>
-            <AnimatedChar char={cardExpYear} />
+            <AnimatedChar char={cardExpYear} animateOnMount={false} />
           </div>
         </div>
       </Row>

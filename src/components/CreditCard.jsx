@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "reactstrap";
 import CreditCardFront from "./CreditCardFront";
 import CreditCardBack from "./CreditCardBack";
+import MovingBox from "./MovingBox";
 
 export default function CreditCard({
   cardNum,
@@ -16,7 +17,8 @@ export default function CreditCard({
 }) {
   return (
     <Container className='credit-card px-0 d-flex flex-column justify-content-center'>
-      <div className={`cover${cardFront ? "" : " flip"}`}>
+      <div id='credit-card' className={`cover${cardFront ? "" : " flip"}`}>
+        <MovingBox boxStart={boxStart} boxEnd={boxEnd} />
         <CreditCardFront
           cardNum={cardNum}
           cardName={cardName}
@@ -24,8 +26,6 @@ export default function CreditCard({
           cardLogo={cardLogo}
           cardExpMonth={cardExpMonth}
           cardExpYear={cardExpYear}
-          boxStart={boxStart}
-          boxEnd={boxEnd}
         />
         <CreditCardBack
           cardName={cardName}

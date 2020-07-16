@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -12,6 +12,7 @@ import CreditCard from "./CreditCard";
 import ExpSelect from "./ExpSelect";
 import { getExpYears, transformCardNum } from "../utils";
 import TextInput from "./TextInput";
+import { BoxSettings } from "../utils/models";
 
 export default function CreditCardForm() {
   const [cardNum, setCardNum] = useState("");
@@ -35,34 +36,65 @@ export default function CreditCardForm() {
     top: 0,
     left: 0,
   });
+  const [boxSettings, setBoxSettings] = useState();
 
-  const boxSettings = {
-    num: {
-      height: "20%",
-      width: "83%",
-      top: "50%",
-      left: "8.5%",
-    },
-    name: {
-      height: "20%",
-      width: "70%",
-      top: "77%",
-      left: "3%",
-    },
-    exp: {
-      height: "20%",
-      width: "22%",
-      top: "77%",
-      left: "76%",
-    },
-    cvv: {
-      opacity: 0,
-      height: "0px",
-      width: "0px",
-      top: 0,
-      left: 0,
-    },
-  };
+  useEffect(() => {
+    setBoxSettings(calcBoxSettings());
+    window.addEventListener("resize", adjustBoxSettings);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function adjustBoxSettings() {
+    setBoxSettings(calcBoxSettings());
+  }
+
+  function domRectConvert(element) {
+    const { top, left, width, height } = element.getBoundingClientRect();
+    return { top, left, width, height };
+  }
+
+  function calcBoxSettings() {
+    const heightAdjust = 16;
+    const widthAdjust = 20;
+    const { top: topOffset, left: leftOffset } = document
+      .getElementById("credit-card")
+      .getBoundingClientRect();
+
+    const numRect = domRectConvert(document.getElementById("num"));
+    const nameRect = domRectConvert(document.getElementById("name"));
+    const expRect = domRectConvert(document.getElementById("exp"));
+
+    return {
+      num: new BoxSettings({
+        ...numRect,
+        heightAdjust,
+        widthAdjust,
+        topOffset,
+        leftOffset,
+      }),
+      name: new BoxSettings({
+        ...nameRect,
+        heightAdjust,
+        widthAdjust,
+        topOffset,
+        leftOffset,
+      }),
+      exp: new BoxSettings({
+        ...expRect,
+        heightAdjust,
+        widthAdjust,
+        topOffset,
+        leftOffset,
+      }),
+      cvv: {
+        opacity: 0,
+        height: "0px",
+        width: "0px",
+        top: 0,
+        left: 0,
+      },
+    };
+  }
 
   function moveBox(e) {
     const name = e.target.name.split("-")[2];
@@ -160,7 +192,10 @@ export default function CreditCardForm() {
             validateUserInput(e);
             moveBox(e);
           }}
-          onFocus={moveBox}
+          onFocus={(e) => {
+            setBoxSettings(calcBoxSettings());
+            moveBox(e);
+          }}
           maxLength={cardLogo === "amex" ? "17" : "19"}
         />
         <TextInput

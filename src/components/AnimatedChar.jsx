@@ -16,9 +16,9 @@ const charVariants = {
   },
 };
 
-export default function AnimatedChar({ char }) {
+export default function AnimatedChar({ char, animateOnMount }) {
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence exitBeforeEnter initial={animateOnMount}>
       <motion.div
         className='char'
         key={char}
