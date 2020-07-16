@@ -263,6 +263,7 @@ code {
 
 .credit-card .card-holder {
   margin-left: 5%;
+  width: 70%;
 }
 
 .credit-card .valid-thru {
@@ -371,5 +372,9 @@ code {
   background-color: transparent;
   border-radius: 10px;
   z-index: 10;
+}
+
+.char {
+  text-align: center;
 }
 /*# sourceMappingURL=index.css.map */

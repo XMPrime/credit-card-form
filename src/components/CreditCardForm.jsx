@@ -192,10 +192,7 @@ export default function CreditCardForm() {
             validateUserInput(e);
             moveBox(e);
           }}
-          onFocus={(e) => {
-            setBoxSettings(calcBoxSettings());
-            moveBox(e);
-          }}
+          onFocus={moveBox}
           maxLength={cardLogo === "amex" ? "17" : "19"}
         />
         <TextInput

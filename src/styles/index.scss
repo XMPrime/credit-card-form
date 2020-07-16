@@ -125,7 +125,7 @@ code {
 
   .card-holder {
     margin-left: 5%;
-    // width: 60%;
+    width: 70%;
   }
   .valid-thru {
     margin-right: 5%;
@@ -224,4 +224,8 @@ code {
   background-color: transparent;
   border-radius: 10px;
   z-index: 10;
+}
+
+.char {
+  text-align: center;
 }
