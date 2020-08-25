@@ -1,10 +1,8 @@
-<a href="https://animated-credit-card.netlify.app/" align="center"><img src="https://i.imgur.com/hTTH5XW.gif" title="source: imgur.com" /></a>
+<p align="center"><a href="https://animated-credit-card.netlify.app/"><img src="https://i.imgur.com/hTTH5XW.gif" title="source: imgur.com" /></a></p>
 
 # Credit Card Form
 
 This is a simple credit card form made fancier with smooth animations, card-type detection, and dynamic number formatting. It's also mobile-friendly!
-
----
 
 ## Setup
 
