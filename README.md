@@ -1,4 +1,4 @@
-<p align="center"><a href="https://animated-credit-card.netlify.app/"><img src="https://i.imgur.com/hTTH5XW.gif" title="source: imgur.com" /></a></p>
+<p align="center"><a href="https://animated-credit-card.netlify.app/"><img src="https://i.imgur.com/hTTH5XW.gif" title="https://animated-credit-card.netlify.app/" /></a></p>
 
 # Credit Card Form
 
